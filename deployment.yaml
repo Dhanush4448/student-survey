@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studentsurvey-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: studentsurvey
+  template:
+    metadata:
+      labels:
+        app: studentsurvey
+    spec:
+      containers:
+      - name: studentsurvey
+        image: dhanush853/studentsurvey:1.0
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: studentsurvey-service
+spec:
+  selector:
+    app: studentsurvey
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30082
+  type: LoadBalancer
