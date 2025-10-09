@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: studentsurvey
-          image: dhanush853/studentsurvey:1.0
+          image: ${IMAGE}:${TAG}
           imagePullPolicy: Always
           ports:
             - containerPort: 80
